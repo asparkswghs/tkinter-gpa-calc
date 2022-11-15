@@ -1,5 +1,14 @@
+#!/usr/bin/env python3
 import tkinter as tk
 from tkinter import messagebox
+"""
+GPA CALC WITH TKINTER
+Published under the MIT License
+Copyright (c) 2022 Austen Sparks
+
+NOTE: The 7 periods is hardcoded. sorry.
+"""
+
 
 # GPA function
 def gpa():
@@ -12,13 +21,15 @@ def gpa():
     grades.append(entry5.get())
     grades.append(entry6.get())
     grades.append(entry7.get())
-    
+
     # convert
     gpas = []
     error_occured = False
+    error_in = ''
     for grade in grades:
         grade = grade.lower()
 
+        # letter to points
         if grade == "a" or grade == "a-":
             gpas.append(4.0)
         elif grade == "b+":
@@ -33,10 +44,18 @@ def gpa():
             gpas.append(1.0)
         elif grade == "f":
             gpas.append(0.5)
-        else:
-            error_occured = True
+        else:# check for invalid input
+          error_occured = True
+          if error_in != '':
+            error_in += "', '" + grade
+          else:
+            error_in += grade
+            
+         
     if error_occured:
-        messagebox.showerror("Invalid Input!", "This program only accepts standard letter grades.")
+        # PEBKAC: 'Problem Exists Between Keyboard And Chair'
+        # See: https://en.wiktionary.org/wiki/PEBCAK
+        messagebox.showerror("PEBKAC ERROR!", f'Input \'{error_in}\' is invalid.\nPlease Try Again.')
         return
     
     # calculate
@@ -45,10 +64,12 @@ def gpa():
         gpa_is = round(gpa_calc, 2)
     except BaseException as ex:
         messagebox.showerror("Error In Calculating Final GPA", f"Error:\n{ex}")
+        return
     
     # display
     gpa_show = tk.Label(text=f'GPA: {gpa_is}')
-    gpa_show.grid(row=8,column=1)
+    gpa_show.grid(row=8,column=2
+)
 
 
 
@@ -71,32 +92,33 @@ button = tk.Button(
 )
 button.grid(row=8,column=0)
 
-
 # Entries
 entry1 = tk.Entry()
-entry1.grid(row=1,column=1)
+entry1.grid(row=1,column=2)
 
 entry2 = tk.Entry()
-entry2.grid(row=2,column=1)
+entry2.grid(row=2,column=2)
 
 entry3 = tk.Entry()
-entry3.grid(row=3,column=1)
+entry3.grid(row=3,column=2)
 
 entry4 = tk.Entry()
-entry4.grid(row=4,column=1)
+entry4.grid(row=4,column=2)
 
 entry5 = tk.Entry()
-entry5.grid(row=5,column=1)
+entry5.grid(row=5,column=2)
 
 entry6 = tk.Entry()
-entry6.grid(row=6,column=1)
+entry6.grid(row=6,column=2)
 
 entry7 = tk.Entry()
-entry7.grid(row=7,column=1)
+entry7.grid(row=7,column=2)
 
 # Labels
 for i in range(7):
     label1 = tk.Label(text=f'Period {i + 1}')
     label1.grid(row=(i + 1),column=0)
 
+
+# Main Window Loop
 window.mainloop()
