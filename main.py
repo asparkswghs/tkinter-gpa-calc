@@ -5,7 +5,7 @@ from tkinter import messagebox
 GPA CALC WITH TKINTER
 Published under the MIT License
 Copyright (c) 2022 Austen Sparks
-
+> https://github.com/asparkswghs/tkinter-gpa-calc
 NOTE: The 7 periods is hardcoded. sorry.
 """
 
