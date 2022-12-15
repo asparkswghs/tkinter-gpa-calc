@@ -1,0 +1,10 @@
+name: Build Script to Binary
+run-name: Build main.py to binaries for linux, macos, windows
+on: [push]
+jobs:
+  Nukita-Build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Nuitka/Nuitka-Action@v0.4
+        with:
+          script-name: main.py
